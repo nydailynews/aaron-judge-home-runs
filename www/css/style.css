@@ -3,6 +3,11 @@ article {
     margin: auto;
 }
 
+article img {
+    margin: auto;
+    display: block;
+}
+
 article p {
     font-family: 'PT Serif', serif;
     font-size: 20px;
@@ -12,12 +17,75 @@ article p {
 h1 {
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 60px;
-    color: navy;
+    color: #00285E;
     margin: 40px auto;
     text-align: center;
     text-transform: uppercase;
 }
 
+#container {
+    position: relative;
+}
+
+.btn-group {}
+
+.btn-group button {
+    background-color: #00285E;
+    border: 1px solid #808080;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    cursor: pointer;
+    float: left;
+}
+
+.btn-group button:not(:last-child) {
+    border-right: none;
+}
+
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #808080;
+}
+
+.stats {
+    width: 150px;
+    height: 150px;
+    border: 1.5px solid #00285E;
+    font-family: 'Open Sans', sans-serif;
+    float: right;
+    margin: auto;
+    padding: 10px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 1100px) {
+    article {
+        margin: 30px;
+    }
+
+    article img {
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 30px;
+        line-height: 35px;
+        margin-bottom: 15px;
+    }
+
+    article p {
+        font-size: 13px;
+        line-height: 23px;
+    }  
+}
 
 /* Fixes for social menu */
 body #rh-subnav-wrap {
