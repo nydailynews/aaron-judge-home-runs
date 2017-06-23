@@ -3,12 +3,12 @@ article {
     margin: auto;
 }
 
-article img {
+img {
     margin: auto;
     display: block;
 }
 
-article p {
+p {
     font-family: 'PT Serif', serif;
     font-size: 20px;
     line-height: 30px;
@@ -19,6 +19,14 @@ h1 {
     font-size: 60px;
     color: #00285E;
     margin: 40px auto;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 20px;
+    color: #00285E;
     text-align: center;
     text-transform: uppercase;
 }
@@ -57,13 +65,19 @@ h1 {
 }
 
 .stats {
-    width: 150px;
-    height: 150px;
-    border: 1.5px solid #00285E;
-    font-family: 'Open Sans', sans-serif;
+    width: 200px;
+    height: auto;
+    border: 1px solid #808080;
+    color: #00285E;   
     float: right;
-    margin: auto;
-    padding: 10px;
+    padding: 15px;
+}
+
+.stats p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: center;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 1100px) {
@@ -72,7 +86,7 @@ h1 {
     }
 
     article img {
-        width: 95%;
+        width: 100%;
     }
 
     h1 {
