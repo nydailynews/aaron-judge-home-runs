@@ -9,7 +9,7 @@
     <body>
         <script src="js/lib/three.js"></script>
         <script>
-            var texture = new THREE.TextureLoader().load( "img/baseball.svg" );
+            var texture = new THREE.TextureLoader().load( "./img/baseball.svg" );
             var scene = new THREE.Scene();
             var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 
@@ -17,9 +17,10 @@
             renderer.setSize( window.innerWidth, window.innerHeight );
             document.body.appendChild( renderer.domElement );
 
-            // TODO: maybe the ball shouldn't be a cube
             var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-            var material = new THREE.MeshBasicMaterial( {  overdraw: 0.5, color: 0xffffff } );
+            var geometry = new THREE.SphereGeometry( 5, 5, 5 );
+            var material = new THREE.MeshBasicMaterial( { map:texture, overdraw: 0.5, color:0xffffff } );
+            var material = new THREE.MeshBasicMaterial( { overdraw: 0.5, color:0xffffff } );
             var cube = new THREE.Mesh( geometry, material );            
             scene.add( cube );
 
@@ -56,7 +57,7 @@
 
                 var point = coords(hits[hitIndex], t);
 
-                console.log(point);
+                //console.log(point);
 
                 cube.position.x = point.x;
                 cube.position.y = point.y;
