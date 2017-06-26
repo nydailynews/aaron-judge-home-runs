@@ -1,0 +1,148 @@
+<html>
+    <head>
+        <title>My first three.js app</title>
+        <style>
+            body { margin: 0; }
+            canvas { width: 100%; height: 100% }
+        </style>
+    </head>
+    <body>
+        <script src="js/lib/three.js"></script>
+        <script>
+            var texture = new THREE.TextureLoader().load( "img/baseball.svg" );
+            var scene = new THREE.Scene();
+            var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+
+            var renderer = new THREE.WebGLRenderer();
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            document.body.appendChild( renderer.domElement );
+
+            // TODO: maybe the ball shouldn't be a cube
+            var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+            var material = new THREE.MeshBasicMaterial( {  overdraw: 0.5, color: 0xffffff } );
+            var cube = new THREE.Mesh( geometry, material );            
+            scene.add( cube );
+
+            // TODO: I'm sure you can overlay an image on this with some effort
+            var field = new THREE.Mesh( new THREE.BoxGeometry( 500, 500, 0.1 ), new THREE.MeshBasicMaterial( { color: 0x00ff00 } ) );
+            field.position.x = -250;
+            field.position.y = -250;
+            scene.add( field );
+
+            // TODO: maybe this can be mouse controlled? Here's roughly 50 feet behind homeplate and 30 feet elevation
+            // maybe the camera should be "hit" and look back at home plate?
+            camera.position.set(50,50,30);
+            camera.up = new THREE.Vector3(0,0,1);
+            camera.lookAt(new THREE.Vector3(0,0,0));
+
+            var animate = function () {
+                requestAnimationFrame( animate );
+
+                // figure out t (number of seconds into the flight)
+                if (t > maxT)
+                {
+                    t = 0;
+                    hitIndex++;
+                    if (hitIndex == hits.length)                    
+                        hitIndex = 0;
+
+                    maxT = flightTime(hits[hitIndex]);
+
+                }
+                else
+                    t+= 0.03; // seconds since last frame
+                    // TODO: figure out the right way to determine this... this should be dynamic
+                    // to make the flight time realistic
+
+                var point = coords(hits[hitIndex], t);
+
+                console.log(point);
+
+                cube.position.x = point.x;
+                cube.position.y = point.y;
+                cube.position.z = point.z;
+
+                /*
+                    // here is "from the ball's perspective" 
+                    // Would probably look more interesting with a sprite over the field or something that gives
+                    // sense of scale/speed.
+
+                    camera.position.set(point.x, point.y, point.z);
+                    camera.up = new THREE.Vector3(0,0,1);
+                    camera.lookAt(new THREE.Vector3(0,0,0));
+                */
+
+                renderer.render(scene, camera);
+            };
+
+            // sample data array
+            var hits = [
+                {
+                    s: 105.3 * 5280/3600, // Speed off bat (converting mph to fps)
+                    r: 426, // distance... not 100% sure if this should be std or true
+                    t: 97.7 - (225) // horizontal angle - 225 to orient the degrees in the chart to our system
+                },
+                {
+                    s: 102.8 * 5280/3600,
+                    r: 420,
+                    t: 89.6 - (225)
+                },
+                {
+                    s: 99.9 * 5280/3600,
+                    r: 386,
+                    t: 79.4 - (225)
+                }
+            ];
+
+            // return the total flight time of a hit
+            var flightTime = function(hit)
+            {
+                return (hit.r * Math.sqrt(2))
+                    / Math.sqrt(
+                        Math.pow(hit.s, 2)
+                        + Math.sqrt(
+                            Math.pow(hit.s, 4)
+                            - 1024*Math.pow(hit.r, 2)
+                        )
+                    );
+            }
+
+            // return the coordinates of the hit at time 't' (seconds)
+            var coords = function(hit, t)
+            {
+                var sSuqared = Math.pow(hit.s,2);
+                var xyReusable = (
+                    Math.sqrt(
+                        sSuqared + Math.sqrt(
+                            Math.pow(hit.s, 4)
+                            - 1024*Math.pow(hit.r, 2)
+                        )
+                    )
+                    / Math.sqrt(2)
+                );
+
+                return {
+                    x: t * Math.cos(toRads(hit.t)) * xyReusable,
+                    y: t * Math.sin(toRads(hit.t)) * xyReusable,
+                    z: -16 * Math.pow(t,2) + t * (
+                        (
+                            2 * sSuqared * Math.sqrt(sSuqared + Math.sqrt(Math.pow(hit.s, 4) - 1024 * Math.pow(hit.r, 2)))
+                            - Math.pow(sSuqared + Math.sqrt(Math.pow(hit.s, 4) - 1024 * Math.pow(hit.r, 2)), 1.5)
+                        )
+                        / (32 * hit.r * Math.sqrt(2))
+                    )
+                };
+            }
+
+            var toRads = function(degrees) {
+                return degrees * Math.PI / 180;
+            }
+
+            var t = 0.0;
+            var hitIndex = 0;
+            var maxT = flightTime(hits[0]);
+
+            animate();
+        </script>
+    </body>
+</html>
