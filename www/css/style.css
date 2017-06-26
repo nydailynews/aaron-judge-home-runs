@@ -38,11 +38,18 @@ h3 {
 #container {
     display: flex;
     flex-flow: row wrap;
-    margin: 25px 0;
+    margin: 35px auto;
+    width: 38.5%;
+}
+
+.stats-text {
+    text-align: center;
+    flex: 1 auto;
+    margin-bottom: 15px;
 }
 
 .btn-group {
-    
+    flex: 2 auto;
 }
 
 .btn-group button {
@@ -72,11 +79,10 @@ h3 {
 }
 
 .stats {
-    width: 323px;
     height: auto;
     border: 1px solid #808080;
-    color: #00285E;   
     padding: 15px;
+    flex: 3 auto;
 }
 
 .stats p {
@@ -106,14 +112,7 @@ h3 {
         line-height: 23px;
     }
 
-    div#container {
-        display: flex;
-        margin: auto;
-    }
-
-    div.btn-group {
-        display: inline-grid;
-    }
+    
 }
 
 /* Fixes for social menu */
