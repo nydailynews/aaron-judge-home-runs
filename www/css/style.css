@@ -112,7 +112,9 @@ h3 {
         line-height: 23px;
     }
 
-    
+    #container {
+        width: 100%;
+    }
 }
 
 /* Fixes for social menu */
