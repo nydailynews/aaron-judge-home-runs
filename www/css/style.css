@@ -1,3 +1,7 @@
+#rh-subnav {
+    display: none;
+}
+
 article {
     max-width: 1100px;
     margin: auto;
@@ -32,10 +36,14 @@ h3 {
 }
 
 #container {
-    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    margin: 25px 0;
 }
 
-.btn-group {}
+.btn-group {
+    
+}
 
 .btn-group button {
     background-color: #00285E;
@@ -44,7 +52,7 @@ h3 {
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;
     text-transform: uppercase;
-    padding: 10px 24px;
+    padding: 13px 26px;
     cursor: pointer;
     float: left;
 }
@@ -59,17 +67,15 @@ h3 {
     display: table;
 }
 
-/* Add a background color on hover */
 .btn-group button:hover {
     background-color: #808080;
 }
 
 .stats {
-    width: 200px;
+    width: 323px;
     height: auto;
     border: 1px solid #808080;
     color: #00285E;   
-    float: right;
     padding: 15px;
 }
 
@@ -98,16 +104,25 @@ h3 {
     article p {
         font-size: 13px;
         line-height: 23px;
-    }  
+    }
+
+    div#container {
+        display: flex;
+        margin: auto;
+    }
+
+    div.btn-group {
+        display: inline-grid;
+    }
 }
 
 /* Fixes for social menu */
-body #rh-subnav-wrap {
+/*body #rh-subnav-wrap {
     padding: 10px 20px 0;
 }
 #rh-subnav ul {
     width: 200px;
-}
+}*/
 .center {
     text-align: center;
     margin: auto;
