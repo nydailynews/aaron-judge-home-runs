@@ -76,6 +76,17 @@
                 renderer.render(scene, camera);
             };
 
+            // For placing the ball, left field line to right field line
+            var location_lookup = {
+                lf_line: 60,
+                lf: 70,
+                lf_cf: 80,
+                cf: 90,
+                cf_rf: 100,
+                rf: 110,
+                rf_line: 120
+            }
+
             // sample data array
             var hits = [
                 {
@@ -111,10 +122,10 @@
             // return the coordinates of the hit at time 't' (seconds)
             var coords = function(hit, t)
             {
-                var sSuqared = Math.pow(hit.s,2);
+                var sSquared = Math.pow(hit.s,2);
                 var xyReusable = (
                     Math.sqrt(
-                        sSuqared + Math.sqrt(
+                        sSquared + Math.sqrt(
                             Math.pow(hit.s, 4)
                             - 1024*Math.pow(hit.r, 2)
                         )
@@ -127,8 +138,8 @@
                     y: t * Math.sin(toRads(hit.t)) * xyReusable,
                     z: -16 * Math.pow(t,2) + t * (
                         (
-                            2 * sSuqared * Math.sqrt(sSuqared + Math.sqrt(Math.pow(hit.s, 4) - 1024 * Math.pow(hit.r, 2)))
-                            - Math.pow(sSuqared + Math.sqrt(Math.pow(hit.s, 4) - 1024 * Math.pow(hit.r, 2)), 1.5)
+                            2 * sSquared * Math.sqrt(sSquared + Math.sqrt(Math.pow(hit.s, 4) - 1024 * Math.pow(hit.r, 2)))
+                            - Math.pow(sSquared + Math.sqrt(Math.pow(hit.s, 4) - 1024 * Math.pow(hit.r, 2)), 1.5)
                         )
                         / (32 * hit.r * Math.sqrt(2))
                     )
