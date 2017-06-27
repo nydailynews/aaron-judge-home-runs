@@ -191,9 +191,17 @@
 <!-- START EDITORIAL CONTENT HERE -->
 
 <script>
-var slugger = {
+function judge_homeruns_callback(data) { slugger.datas = data; }
 
+var slugger = {
+    draw_field: function() {},
+    play_hit: function() {},
+    update_statbox: function() {},
+    init: function() {
+        $.getJSON('http://interactive.nydailynews.com/chart/output/judge-homeruns.jsonp?callback=?', function(data) { slugger.data = data; });
+    }
 };
+slugger.init();
 </script>
 <article>
     <img src="img/aaron-judge.jpg" alt="Aaron Judge">
