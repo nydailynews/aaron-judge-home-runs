@@ -9,7 +9,7 @@
     <body>
         <script src="js/lib/three.js"></script>
         <script>
-            var texture = new THREE.TextureLoader().load( "./img/baseball.png" );
+            var texture = new THREE.TextureLoader().load( "./img/baseball-texture-map.png" );
             var scene = new THREE.Scene();
             var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 
@@ -17,9 +17,7 @@
             renderer.setSize( window.innerWidth, window.innerHeight );
             document.body.appendChild( renderer.domElement );
 
-            var geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
-            var geometry = new THREE.CircleBufferGeometry( 10, 8 );
-            var geometry = new THREE.SphereBufferGeometry( 5, 8, 6 );
+            var geometry = new THREE.SphereBufferGeometry( 3, 8, 6 );
             var material = new THREE.MeshBasicMaterial( { overdraw: 0.5, color:0xffffff } );
             var material = new THREE.MeshBasicMaterial( { map:texture, overdraw: 0.5, color:0xffffff } );
             var cube = new THREE.Mesh( geometry, material );            
@@ -63,6 +61,8 @@
                 cube.position.x = point.x;
                 cube.position.y = point.y;
                 cube.position.z = point.z;
+                cube.rotation.y += 0.08;
+                cube.rotation.x += 0.04;
 
                 /*
                     // here is "from the ball's perspective" 
