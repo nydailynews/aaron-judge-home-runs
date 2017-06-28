@@ -276,10 +276,15 @@ var slugger = {
 
             var texture = new THREE.TextureLoader().load( "./img/baseball-texture-map.png" );
             var scene = new THREE.Scene();
-            var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+            // That "40" started off "75" when the field was smaller.
+            var w = $('#field').width();
+            var h = $('#field').height() + 400;
+            $('#field img').remove();
+            var camera = new THREE.PerspectiveCamera( 50, w/h, 0.1, 1000 );
 
-            var renderer = new THREE.WebGLRenderer();
-            renderer.setSize( $('#field').width(), $('#field').height() );
+            var renderer = new THREE.WebGLRenderer({ alpha: true });
+            renderer.setClearColor( 0xffffff, 0);
+            renderer.setSize( w, h );
             document.getElementById('field').appendChild( renderer.domElement );
 
             // THE BALL
@@ -307,17 +312,18 @@ var slugger = {
             scene.add( line );
             console.log(line);
 
+            // THE FIELD
             // TODO: I'm sure you can overlay an image on this with some effort
             var field = new THREE.Mesh( new THREE.BoxGeometry( 500, 500, 0.1 ), new THREE.MeshBasicMaterial( { color: 0x00ff00 } ) );
             field.position.x = -250;
             field.position.y = -250;
-            scene.add( field );
+            //scene.add( field );
 
             // TODO: maybe this can be mouse controlled? Here's roughly 50 feet behind homeplate and 30 feet elevation
             // maybe the camera should be "hit" and look back at home plate?
-            camera.position.set(50,50,32);
+            camera.position.set(17,17,10);
             camera.up = new THREE.Vector3(0,0,1);
-            camera.lookAt(new THREE.Vector3(0,0,0));
+            camera.lookAt(new THREE.Vector3(0,0,1));
 
             var animate = function () {
                 requestAnimationFrame( animate );
@@ -447,7 +453,8 @@ slugger.init();
 #field canvas {
     background-image: url('img/baseball-field.png');
     background-repeat: no-repeat;
-    background-color: white;
+    background-color: #fafafa;
+    background-position: center 0;
 }
 </body>
 </html>
