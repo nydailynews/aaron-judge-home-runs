@@ -75,6 +75,7 @@
 
     <!-- ADOBE ANALYTICS -->
     <script src="//assets.adobedtm.com/4fc527d6fda921c80e462d11a29deae2e4cf7514/satelliteLib-c91fdc6ac624c6cbcd50250f79786de339793801.js"></script>
+    <script src="http://interactive.nydailynews.com/includes/js/vendor/jquery.js"></script>
     <script src="js/lib/three.js"></script>
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css'>
@@ -278,8 +279,8 @@ var slugger = {
             var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 
             var renderer = new THREE.WebGLRenderer();
-            renderer.setSize( window.innerWidth, window.innerHeight );
-            document.body.appendChild( renderer.domElement );
+            renderer.setSize( $('#field').width(), $('#field').height() );
+            document.getElementById('field').appendChild( renderer.domElement );
 
             // THE BALL
             var geometry = new THREE.SphereBufferGeometry( 3, 8, 6 );
@@ -314,7 +315,7 @@ var slugger = {
 
             // TODO: maybe this can be mouse controlled? Here's roughly 50 feet behind homeplate and 30 feet elevation
             // maybe the camera should be "hit" and look back at home plate?
-            camera.position.set(50,50,30);
+            camera.position.set(50,50,32);
             camera.up = new THREE.Vector3(0,0,1);
             camera.lookAt(new THREE.Vector3(0,0,0));
 
@@ -442,5 +443,11 @@ var slugger = {
 
 slugger.init();
 </script>
+<style type="text/css">
+#field canvas {
+    background-image: url('img/baseball-field.png');
+    background-repeat: no-repeat;
+    background-color: white;
+}
 </body>
 </html>
