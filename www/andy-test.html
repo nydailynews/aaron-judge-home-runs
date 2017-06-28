@@ -2,8 +2,8 @@
     <head>
         <title>My first three.js app</title>
         <style>
-            body { margin: 0; }
-            canvas { width: 100%; height: 100% }
+            body { margin: 0; background-color: white; }
+            canvas { width: 100%; height: 100%; background-color: white; }
         </style>
     </head>
     <body>
@@ -17,6 +17,7 @@
             renderer.setSize( window.innerWidth, window.innerHeight );
             document.body.appendChild( renderer.domElement );
 
+            // THE BALL
             var geometry = new THREE.SphereBufferGeometry( 3, 8, 6 );
             var material = new THREE.MeshBasicMaterial( { overdraw: 0.5, color:0xffffff } );
             var material = new THREE.MeshBasicMaterial( { map:texture, overdraw: 0.5, color:0xffffff } );
@@ -24,15 +25,21 @@
             //cube.geometry.castShadow = true;
             scene.add( cube );
 
+            // THE LINE
             // Add a line to trace the ball's path.
-            geometry = new THREE.Geometry();
-            geometry.vertices.push(new THREE.Vector3( 0, 0, 0 ),
-                                    new THREE.Vector3( 0, 10, 0 ));
+            geometry = new THREE.BufferGeometry();
+            console.log(geometry);
+            var numPoints = 200;
+            var positions = new Float32Array( numPoints * 3 ); // 3 vertices per point
+            var lineDistances = new Float32Array( numPoints * 1 ); // 1 value per point
+            geometry.addAttribute( 'position', new THREE.BufferAttribute( positions, 3) );
+            //geometry.addAttribute( 'position', new THREE.BufferAttribute(new THREE.Vector3( 0, 0, 0 ),
+            //                        new THREE.Vector3( 0, 10, 0 )));
+            drawCount = 2;
+            geometry.setDrawRange(0, drawCount);
             material = new THREE.LineBasicMaterial( { color: 0xff0000, linewidth: 10 } );
             line = new THREE.Line( geometry,  material );
             scene.add( line );
-            line.geometry.verticesNeedUpdate = true;
-            line.geometry.elementsNeedUpdate = true;
             console.log(line);
 
             // TODO: I'm sure you can overlay an image on this with some effort
@@ -48,7 +55,7 @@
             camera.lookAt(new THREE.Vector3(0,0,0));
 
             var animate = function () {
-                requestAnimationFrame( animate );
+                //requestAnimationFrame( animate );
 
                 // figure out t (number of seconds into the flight)
                 if (t > maxT)
@@ -76,7 +83,7 @@
                 cube.rotation.y += 0.08;
                 cube.rotation.x += 0.04;
                 
-                line.geometry.vertices.push(new THREE.Vector3( point.x, point.y, point.z ))
+                //line.geometry.vertices.push(new THREE.Vector3( point.x, point.y, point.z ))
 
                 /*
                     // here is "from the ball's perspective" 
@@ -172,4 +179,13 @@
             animate();
         </script>
     </body>
+<!--
+    var vertices = []
+    for(var x = 0; x < 10; x++){
+        var point = new THREE.Vector3(parseFloat(pitch.trajectory.x[x]), parseFloat(pitch.trajectory.y[x]), parseFloat(pitch.trajectory.z[x]));
+        vertices.push(point);
+    }
+    var curve = new THREE.CatmullRomCurve3(vertices);
+    var trail = new THREE.SceneUtils.createMultiMaterialObject(new THREE.TubeGeometry(curve,50,0.03,8,false ), [new THREE.MeshBasicMaterial({color:color,transparent:true, opacity:0.4})]);
+-->
 </html>
