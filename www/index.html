@@ -276,11 +276,11 @@ var slugger = {
 
             var texture = new THREE.TextureLoader().load( "./img/baseball-texture-map.png" );
             var scene = new THREE.Scene();
-            // That "40" started off "75" when the field was smaller.
             var w = $('#field').width();
-            var h = $('#field').height() + 400;
+            var h = $('#field').height();
             $('#field img').remove();
-            var camera = new THREE.PerspectiveCamera( 50, w/h, 0.1, 1000 );
+            // That "40" started off "75" when the field was smaller.
+            var camera = new THREE.PerspectiveCamera( 40, w/h, 0.1, 1000 );
 
             var renderer = new THREE.WebGLRenderer({ alpha: true });
             renderer.setClearColor( 0xffffff, 0);
@@ -321,9 +321,9 @@ var slugger = {
 
             // TODO: maybe this can be mouse controlled? Here's roughly 50 feet behind homeplate and 30 feet elevation
             // maybe the camera should be "hit" and look back at home plate?
-            camera.position.set(17,17,10);
+            camera.position.set(40,40,40);
             camera.up = new THREE.Vector3(0,0,1);
-            camera.lookAt(new THREE.Vector3(0,0,1));
+            camera.lookAt(new THREE.Vector3(-60,-60,1));
 
             var animate = function () {
                 requestAnimationFrame( animate );
