@@ -194,7 +194,7 @@
 
 <article>
     <img src="img/aaron-judge.jpg" alt="Aaron Judge">
-    <h1>Aaron Judge home runs</h1>
+    <h1>All rise for the Bronx bomber's blasts</h1>
     <p>
         <strong>Aaron Judge hits the ball deep.</strong> Aaron Judge hits the ball far. The hulking 6-7 Baby Bomber has become the face of the Yankees youth movement and one of the best stories in all of baseball. The pinstriped rookie is belting home runs at a record pace and all eyes are on his every at-bat. The slugging phenom just doesn't hit homers, he absolutely crushes the ball. Follow along as the News tracks each of Judge's Ruthian blasts.
     </p>
@@ -203,32 +203,51 @@
             <img src="img/baseball-field.png">
         </div>
 
+<!-- STATS TABLE STARTS HERE -->
+
+<script>
+$(document).ready(function() {
+    $(".tablesorter").tablesorter();
+    var $table = $('.tablesorter');
+    var tb_offset = 75;
+    if ( is_mobile() == 'YES' ) tb_offset = 29;
+    $table.floatThead({
+        responsiveContainer: function($table){ return $table.closest('.container'); },
+        top: tb_offset
+    });
+});
+</script>
+
+<script src="js/float-header.js"></script>
+<script src="js/table-sorter.js"></script>
 
     <div id="container">
-    <div class="stats-text"><p>Click on a month to see balls fly and get the home run details.</p></div>
-        <div class="btn-group">
-            <button>april</button>
-            <button>may</button>
-            <button>june</button>
-            <button>july</button>
-            <button>august</button>
+    <div class="stats-text"><p>Click a table column to sort by that column.</p></div>
+    <table class="compare">
+    <col><col><col><col><col><col><col><col>
+    <thead>
+        <tr>
+            <th><a>Number</a></th>
+            <th><a>Date</a></th>
+            <th><a>Distance</a></th>
+            <th><a>Exit Velocity</a></th>
+            <th><a>Opponent</a></th>
+            <th><a>Count</a></th>
+        </tr>
+    </thead>
 
-        </div>
-        <div class="stats">
-            <h3>All rise for the Bronx bomber's blasts</h3>
-            <p>date</p>
-            <p>distance</p>
-            <p>exit velocity</p>
-            <p>opponent</p>
-        </div>
-    </div>    
+    <tbody aria-live="polite" aria-relevant="all">
+    </tbody>
+    </table>
+
+<!-- STATS TABLE END -->
+
 </article>
 
 </div>
 </main>
         <!-- CUSTOM CSS GOES HERE-->
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/stats.css">
         
   </div>  
 
