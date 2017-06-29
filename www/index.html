@@ -279,22 +279,20 @@ var slugger = {
 
 var ani = {
     ball_texture: new THREE.TextureLoader().load( "./img/baseball-texture-map.png" ),
-    balls = [],
+    balls: [],
     make_ball: function() {
         // Return a ball object
         var geometry = new THREE.SphereBufferGeometry( 3, 8, 6 );
         var material = new THREE.MeshBasicMaterial( { overdraw: 0.5, color:0xffffff } );
         var material = new THREE.MeshBasicMaterial( { map:this.ball_texture, overdraw: 0.5, color:0xffffff } );
         var cube = new THREE.Mesh( geometry, material );            
-        //cube.geometry.castShadow = true;
         scene.add( cube );
         return cube;
     }
-}
+};
 
 
 
-            var texture = new THREE.TextureLoader().load( "./img/baseball-texture-map.png" );
             var scene = new THREE.Scene();
             var w = $('#field').width();
             var h = $('#field').height();
@@ -306,14 +304,6 @@ var ani = {
             renderer.setClearColor( 0xffffff, 0);
             renderer.setSize( w, h );
             document.getElementById('field').appendChild( renderer.domElement );
-
-            // THE BALL
-            var geometry = new THREE.SphereBufferGeometry( 3, 8, 6 );
-            var material = new THREE.MeshBasicMaterial( { overdraw: 0.5, color:0xffffff } );
-            var material = new THREE.MeshBasicMaterial( { map:texture, overdraw: 0.5, color:0xffffff } );
-            var cube = new THREE.Mesh( geometry, material );            
-            //cube.geometry.castShadow = true;
-            scene.add( cube );
 
             // THE LINE
             // Add a line to trace the ball's path.
@@ -347,6 +337,7 @@ var ani = {
             var x, y, z, index;
             x = y = z = index = 0;
 
+            ani.balls[0] = ani.make_ball();
             var animate = function () {
                 requestAnimationFrame( animate );
 
@@ -356,6 +347,7 @@ var ani = {
                     index = 0;
                     t = 0;
                     hitIndex++;
+                    ani.balls[hitIndex] = ani.make_ball();
                     if (hitIndex == slugger.hits.length)                    
                         hitIndex = 0;
 
@@ -371,11 +363,11 @@ var ani = {
 
                 var point = coords(slugger.hits[hitIndex], t);
 
-                ball[hitIndex].position.x = point.x;
-                cube.position.y = point.y;
-                cube.position.z = point.z;
-                cube.rotation.y += 0.08;
-                cube.rotation.x += 0.04;
+                ani.balls[hitIndex].position.x = point.x;
+                ani.balls[hitIndex].position.y = point.y;
+                ani.balls[hitIndex].position.z = point.z;
+                ani.balls[hitIndex].rotation.y += 0.08;
+                ani.balls[hitIndex].rotation.x += 0.04;
                 
                 positions[ index ] = point.x;
                 index += 1;
