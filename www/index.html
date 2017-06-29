@@ -302,17 +302,7 @@ var slugger = {
             var positions = new Float32Array( MAX_POINTS * 3 );
             geometry.addAttribute( 'position', new THREE.BufferAttribute( positions, 3) );
 
-            var drawCount = 1; // draw the first 2 points, only
-
-var vertices = new Float32Array( [
-    -1.0, -1.0,  1.0,
-     1.0, -1.0,  1.0,
-     1.0,  1.0,  1.0,
-
-     1.0,  1.0,  1.0,
-    -1.0,  1.0,  1.0
-] );
-            //geometry.addAttribute( 'position', new THREE.BufferAttribute(vertices, 3 ) );
+            var drawCount = 1;
             geometry.setDrawRange( 0, drawCount );
             //geometry.addAttribute( 'position', new THREE.BufferAttribute(new THREE.Vector3( 0, 0, 0 ),
             //                        new THREE.Vector3( 0, 20, 0 )));
@@ -359,8 +349,6 @@ var vertices = new Float32Array( [
 
                 var point = coords(hits[hitIndex], t);
 
-                //console.log(point);
-
                 cube.position.x = point.x;
                 cube.position.y = point.y;
                 cube.position.z = point.z;
@@ -373,9 +361,6 @@ var vertices = new Float32Array( [
                 index += 1;
                 positions[ index ] = point.z;
                 index += 1;
-                //line.position.x = point.x;
-                //line.position.y = point.y;
-                //line.position.z = point.z;
                 line.geometry.setDrawRange( 0, index );
                 line.geometry.attributes.position.needsUpdate = true;
 
