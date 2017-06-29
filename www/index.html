@@ -222,7 +222,10 @@ $(document).ready(function() {
 <script src="js/table-sorter.js"></script>
 
     <div id="container">
-    <div class="stats-text"><p>Click a table column to sort by that column.</p></div>
+    <div class="stats-text">
+        <p id="interface"><a href="#" onClick="slugger.play(); return false;" id="play">Play</a><a href="#" onClick="slugger.pause(); return false;" id="pause">Pause</a></p>
+        <p>Click a table column to sort by that column.</p>
+    </div>
     <table class="compare">
     <col><col><col><col><col><col>
     <thead>
@@ -285,9 +288,22 @@ var slugger = {
         window.maxT = flightTime(this.hits[0]);
         return true;
     },
+    play: function() {
+        // Start the animation
+        playpause = 'play';
+        animate();
+        $('#play').addClass('hide');
+        $('#pause').removeClass('hide');
+    },
+    pause: function() {
+        // Pause the animation
+        playpause = 'pause';
+        $('#pause').addClass('hide');
+        $('#play').removeClass('hide');
+    },
     load_ani: function() {
         // Called once the data's loaded, this does most of the work.
-        if ( this.process_hits() ) animate();
+        this.process_hits();
     },
     init: function() {
         // Called on page load.
@@ -356,7 +372,10 @@ var ani = {
             ani.balls[0] = ani.make_ball();
             ani.lines[0] = ani.make_line();
             var positions = ani.lines[0].geometry.attributes.position.array;
+
             var animate = function () {
+                if ( typeof playpause !== 'undefined' && playpause === 'pause' ) return false;
+
                 requestAnimationFrame( animate );
 
                 // figure out t (number of seconds into the flight)

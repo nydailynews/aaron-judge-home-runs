@@ -182,3 +182,5 @@ div.ad > span {
     color:#999;
     font-family:sans-serif;
 }
+
+.hide { display: none; }
