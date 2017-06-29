@@ -199,48 +199,38 @@
         <strong>Aaron Judge hits the ball deep.</strong> Aaron Judge hits the ball far. The hulking 6-7 Baby Bomber has become the face of the Yankees youth movement and one of the best stories in all of baseball. The pinstriped rookie is belting home runs at a record pace and all eyes are on his every at-bat. The slugging phenom just doesn't hit homers, he absolutely crushes the ball. Follow along as the News tracks each of Judge's Ruthian blasts.
     </p>
     <hr>
-        <div id="field">
-            <img src="img/baseball-field.png">
-        </div>
+    <div id="field">
+        <img src="img/baseball-field.png">
+    </div>
 
 <!-- STATS TABLE STARTS HERE -->
-
-<script>
-$(document).ready(function() {
-    $(".tablesorter").tablesorter();
-    var $table = $('.tablesorter');
-    var tb_offset = 75;
-    if ( is_mobile ) tb_offset = 29;
-    $table.floatThead({
-        responsiveContainer: function($table){ return $table.closest('.container'); },
-        //top: tb_offset
-    });
-});
-</script>
 
 <script src="js/float-header.js"></script>
 <script src="js/table-sorter.js"></script>
 
     <div id="container">
-    <div class="stats-text">
-        <p id="interface"><a href="#" onClick="slugger.play(); return false;" id="play">Play</a><a href="#" onClick="slugger.pause(); return false;" id="pause">Pause</a></p>
-        <p>Click a table column to sort by that column.</p>
+        <div class="stats-text">
+            <p id="interface">
+                <a href="#" onClick="slugger.play(); return false;" id="play">Play</a>
+                <a href="#" onClick="slugger.pause(); return false;" id="pause" class="hide">Pause</a>
+            </p>
+            <p>Click a table column to sort by that column.</p>
+        </div>
+        <table id="homers" class="tablesorter compare">
+            <col><col><col><col><col><col>
+            <thead>
+                <tr>
+                    <th><a>Number</a></th>
+                    <th><a>Date</a></th>
+                    <th><a>Distance</a></th>
+                    <th><a>Exit Velocity</a></th>
+                    <th><a>Opponent</a></th>
+                    <th><a>Count</a></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </div>
-    <table class="compare">
-    <col><col><col><col><col><col>
-    <thead>
-        <tr>
-            <th><a>Number</a></th>
-            <th><a>Date</a></th>
-            <th><a>Distance</a></th>
-            <th><a>Exit Velocity</a></th>
-            <th><a>Opponent</a></th>
-            <th><a>Count</a></th>
-        </tr>
-    </thead>
-
-    <tbody></tbody>
-    </table>
 
 <!-- STATS TABLE END -->
 
@@ -273,6 +263,18 @@ var slugger = {
     play_hit: function() {},
     update_statbox: function() {},
     hits:  [],
+    table_row: function(item) {
+        // Write a table row's data
+        tb = $('#homers tbody');
+        var row = '<tr><td>' + item['Home-Run-No.'] + '</td>\n\
+    <td>' + item['Date'] + '</td>\n\
+    <td>' + item['Distance'] + ' feet</td>\n\
+    <td>' + item['Exit-Velocity'] + '</td>\n\
+    <td>' + item['Opponent'].replace('-', ' ') + '</td>\n\
+    <td>' + item['Count'] + '</td>\n\
+</tr>';
+        tb.append(row);
+    },
     process_hits: function() {
         // Handle the hit information from the spreadsheet.
         // Loop through the data array and populate the hits array with the processed numbers.
@@ -284,6 +286,8 @@ var slugger = {
             r = +this.data[i]['Distance']; // distance... not 100% sure if this should be std or true
             t = +this.data[i]['Horizontal-Angle'] - (225); // horizontal angle - 225 to orient the degrees in the chart to our system
             this.hits.push({s:s,r:r,t:t});
+
+            this.table_row(this.data[i]);
         }
         window.maxT = flightTime(this.hits[0]);
         return true;
@@ -304,6 +308,16 @@ var slugger = {
     load_ani: function() {
         // Called once the data's loaded, this does most of the work.
         this.process_hits();
+
+        // Make the table sortable
+        $(".tablesorter").tablesorter();
+        var $table = $('.tablesorter');
+        var tb_offset = 75;
+        if ( is_mobile ) tb_offset = 29;
+        $table.floatThead({
+            responsiveContainer: function($table){ return $table.closest('.container'); },
+            //top: tb_offset
+        });
     },
     init: function() {
         // Called on page load.
