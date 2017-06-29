@@ -298,22 +298,35 @@ var slugger = {
 
 var ani = {
     ball_texture: new THREE.TextureLoader().load( "./img/baseball-texture-map.png" ),
-    balls = [],
+    balls: [],
+    lines: [],
     make_ball: function() {
         // Return a ball object
         var geometry = new THREE.SphereBufferGeometry( 3, 8, 6 );
         var material = new THREE.MeshBasicMaterial( { overdraw: 0.5, color:0xffffff } );
         var material = new THREE.MeshBasicMaterial( { map:this.ball_texture, overdraw: 0.5, color:0xffffff } );
         var cube = new THREE.Mesh( geometry, material );            
-        //cube.geometry.castShadow = true;
         scene.add( cube );
         return cube;
+    },
+    make_line: function() {
+        // Return a line object
+        // Add a line to trace the ball's path.
+        var MAX_POINTS = 60;
+        geometry = new THREE.BufferGeometry();
+        var positions = new Float32Array( MAX_POINTS * 3 );
+        geometry.addAttribute( 'position', new THREE.BufferAttribute( positions, 3) );
+        var drawCount = 0;
+        geometry.setDrawRange( 0, drawCount );
+        material = new THREE.LineBasicMaterial( { color: 0xff0000, linewidth: 10 } );
+        line = new THREE.Line( geometry,  material );
+        scene.add( line );
+        return line;
     }
-}
+};
 
 
 
-            var texture = new THREE.TextureLoader().load( "./img/baseball-texture-map.png" );
             var scene = new THREE.Scene();
             var w = $('#field').width();
             var h = $('#field').height();
@@ -325,30 +338,6 @@ var ani = {
             renderer.setClearColor( 0xffffff, 0);
             renderer.setSize( w, h );
             document.getElementById('field').appendChild( renderer.domElement );
-
-            // THE BALL
-            var geometry = new THREE.SphereBufferGeometry( 3, 8, 6 );
-            var material = new THREE.MeshBasicMaterial( { overdraw: 0.5, color:0xffffff } );
-            var material = new THREE.MeshBasicMaterial( { map:texture, overdraw: 0.5, color:0xffffff } );
-            var cube = new THREE.Mesh( geometry, material );            
-            //cube.geometry.castShadow = true;
-            scene.add( cube );
-
-            // THE LINE
-            // Add a line to trace the ball's path.
-            var MAX_POINTS = 250;
-            geometry = new THREE.BufferGeometry();
-            var positions = new Float32Array( MAX_POINTS * 3 );
-            geometry.addAttribute( 'position', new THREE.BufferAttribute( positions, 3) );
-
-            var drawCount = 1;
-            geometry.setDrawRange( 0, drawCount );
-            //geometry.addAttribute( 'position', new THREE.BufferAttribute(new THREE.Vector3( 0, 0, 0 ),
-            //                        new THREE.Vector3( 0, 20, 0 )));
-            material = new THREE.LineBasicMaterial( { color: 0xff0000, linewidth: 10 } );
-            line = new THREE.Line( geometry,  material );
-            scene.add( line );
-            console.log(line);
 
             // THE FIELD
             var field = new THREE.Mesh( new THREE.BoxGeometry( 500, 500, 0.1 ), new THREE.MeshBasicMaterial( { color: 0x00ff00 } ) );
@@ -362,21 +351,34 @@ var ani = {
             camera.up = new THREE.Vector3(0,0,1);
             camera.lookAt(new THREE.Vector3(-70,-70,1));
 
-            var positions = line.geometry.attributes.position.array;
             var x, y, z, index;
             x = y = z = index = 0;
 
+            ani.balls[0] = ani.make_ball();
+            ani.lines[0] = ani.make_line();
+            var positions = ani.lines[0].geometry.attributes.position.array;
             var animate = function () {
                 requestAnimationFrame( animate );
 
                 // figure out t (number of seconds into the flight)
                 if (t > maxT)
                 {
+                    // CAPTION FOR PREVIOUS HOME RUN
+
+
+                    // HANDLE THE NEXT HOME RUN
                     index = 0;
                     t = 0;
                     hitIndex++;
+                    ani.balls[hitIndex] = ani.make_ball();
+                    ani.lines[hitIndex] = ani.make_line();
+                    positions = ani.lines[hitIndex].geometry.attributes.position.array;
                     if (hitIndex == slugger.hits.length)                    
-                        hitIndex = 0;
+                    {
+                        // END THE ANIMATION
+                        animate = function() {};
+                        //hitIndex = 0;
+                    }
 
                     maxT = flightTime(slugger.hits[hitIndex]);
 
@@ -390,20 +392,22 @@ var ani = {
 
                 var point = coords(slugger.hits[hitIndex], t);
 
-                ball[hitIndex].position.x = point.x;
-                cube.position.y = point.y;
-                cube.position.z = point.z;
-                cube.rotation.y += 0.08;
-                cube.rotation.x += 0.04;
+                // BALL
+                ani.balls[hitIndex].position.x = point.x;
+                ani.balls[hitIndex].position.y = point.y;
+                ani.balls[hitIndex].position.z = point.z;
+                ani.balls[hitIndex].rotation.y += 0.08;
+                ani.balls[hitIndex].rotation.x += 0.04;
                 
+                // LINE
                 positions[ index ] = point.x;
                 index += 1;
                 positions[ index ] = point.y;
                 index += 1;
                 positions[ index ] = point.z;
                 index += 1;
-                line.geometry.setDrawRange( 0, index );
-                line.geometry.attributes.position.needsUpdate = true;
+                ani.lines[hitIndex].geometry.setDrawRange( 0, index );
+                ani.lines[hitIndex].geometry.attributes.position.needsUpdate = true;
 
                 /*
                     // here is "from the ball's perspective" 
