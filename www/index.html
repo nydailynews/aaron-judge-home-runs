@@ -195,7 +195,9 @@
 <article>
     <img src="img/aaron-judge.jpg" alt="Aaron Judge">
     <h1>Aaron Judge home runs</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>
+        <strong>Aaron Judge hits the ball deep.</strong> Aaron Judge hits the ball far. The hulking 6-7 Baby Bomber has become the face of the Yankees youth movement and one of the best stories in all of baseball. The pinstriped rookie is belting home runs at a record pace and all eyes are on his every at-bat. The slugging phenom just doesn't hit homers, he absolutely crushes the ball. Follow along as the News tracks each of Judge's Ruthian blasts.
+    </p>
     <hr>
         <div id="field">
             <img src="img/baseball-field.png">
@@ -213,7 +215,7 @@
 
         </div>
         <div class="stats">
-            <h3>snappy title</h3>
+            <h3>All rise for the Bronx bomber's blasts</h3>
             <p>date</p>
             <p>distance</p>
             <p>exit velocity</p>
@@ -277,6 +279,7 @@ var slugger = {
 
 var ani = {
     ball_texture: new THREE.TextureLoader().load( "./img/baseball-texture-map.png" ),
+    balls = [],
     make_ball: function() {
         // Return a ball object
         var geometry = new THREE.SphereBufferGeometry( 3, 8, 6 );
@@ -360,13 +363,15 @@ var ani = {
 
                 }
                 else
-                    t+= 0.03; // seconds since last frame
+                {
+                    t+= 0.04; // seconds since last frame
                     // TODO: figure out the right way to determine this... this should be dynamic
                     // to make the flight time realistic
+                }
 
                 var point = coords(slugger.hits[hitIndex], t);
 
-                cube.position.x = point.x;
+                ball[hitIndex].position.x = point.x;
                 cube.position.y = point.y;
                 cube.position.z = point.z;
                 cube.rotation.y += 0.08;
