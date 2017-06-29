@@ -344,6 +344,10 @@ var ani = {
                 // figure out t (number of seconds into the flight)
                 if (t > maxT)
                 {
+                    // CAPTION FOR PREVIOUS HOME RUN
+
+
+                    // HANDLE THE NEXT HOME RUN
                     index = 0;
                     t = 0;
                     hitIndex++;
@@ -351,7 +355,11 @@ var ani = {
                     ani.lines[hitIndex] = ani.make_line();
                     positions = ani.lines[hitIndex].geometry.attributes.position.array;
                     if (hitIndex == slugger.hits.length)                    
-                        hitIndex = 0;
+                    {
+                        // END THE ANIMATION
+                        animate = function() {};
+                        //hitIndex = 0;
+                    }
 
                     maxT = flightTime(slugger.hits[hitIndex]);
 
@@ -365,12 +373,14 @@ var ani = {
 
                 var point = coords(slugger.hits[hitIndex], t);
 
+                // BALL
                 ani.balls[hitIndex].position.x = point.x;
                 ani.balls[hitIndex].position.y = point.y;
                 ani.balls[hitIndex].position.z = point.z;
                 ani.balls[hitIndex].rotation.y += 0.08;
                 ani.balls[hitIndex].rotation.x += 0.04;
                 
+                // LINE
                 positions[ index ] = point.x;
                 index += 1;
                 positions[ index ] = point.y;
