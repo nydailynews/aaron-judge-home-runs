@@ -200,7 +200,7 @@
     </p>
     <hr>
     <div id="field">
-        <img src="img/baseball-field.png">
+        <img src="img/baseball-field-deluxe.png" alt="An illustration of a baseball field">
     </div>
 
 <!-- STATS TABLE STARTS HERE -->
@@ -213,6 +213,7 @@
             <p id="interface">
                 <a href="#" onClick="slugger.play(); return false;" id="play">Play</a>
                 <a href="#" onClick="slugger.pause(); return false;" id="pause" class="hide">Pause</a>
+                <a href="#" onClick="slugger.restart(); return false;" id="restart" class="hide">Restart</a>
             </p>
             <p>Click a table column to sort by that column.</p>
         </div>
@@ -295,16 +296,28 @@ var slugger = {
     },
     play: function() {
         // Start the animation
+        if ( typeof playpause === 'undefined' ) animate();
         playpause = 'play';
-        animate();
         $('#play').addClass('hide');
         $('#pause').removeClass('hide');
+        $('#restart').addClass('hide');
     },
     pause: function() {
         // Pause the animation
         playpause = 'pause';
         $('#pause').addClass('hide');
         $('#play').removeClass('hide');
+    },
+    end: function() {
+        // End the animation
+        playpause = 'pause';
+        $('#pause').addClass('hide');
+        $('#play').addClass('hide');
+        $('#restart').removeClass('hide');
+    },
+    restart: function() {
+        hitIndex = 0;
+        this.play();
     },
     load_ani: function() {
         // Called once the data's loaded, this does most of the work.
@@ -416,7 +429,8 @@ var ani = {
                     if (hitIndex == slugger.hits.length)                    
                     {
                         // END THE ANIMATION
-                        animate = function() {};
+                        slugger.end();
+                        return false;
                         //hitIndex = 0;
                     }
 
@@ -513,7 +527,7 @@ slugger.init();
 </script>
 <style type="text/css">
 #field canvas {
-    background-image: url('img/baseball-field.png');
+    background-image: url('img/baseball-field-deluxe.png');
     background-repeat: no-repeat;
     background-color: #fafafa;
     background-position: center 0;
