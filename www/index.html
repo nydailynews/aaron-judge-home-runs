@@ -210,10 +210,10 @@ $(document).ready(function() {
     $(".tablesorter").tablesorter();
     var $table = $('.tablesorter');
     var tb_offset = 75;
-    if ( is_mobile() == 'YES' ) tb_offset = 29;
+    if ( is_mobile ) tb_offset = 29;
     $table.floatThead({
         responsiveContainer: function($table){ return $table.closest('.container'); },
-        top: tb_offset
+        //top: tb_offset
     });
 });
 </script>
@@ -224,7 +224,7 @@ $(document).ready(function() {
     <div id="container">
     <div class="stats-text"><p>Click a table column to sort by that column.</p></div>
     <table class="compare">
-    <col><col><col><col><col><col><col><col>
+    <col><col><col><col><col><col>
     <thead>
         <tr>
             <th><a>Number</a></th>
@@ -236,8 +236,7 @@ $(document).ready(function() {
         </tr>
     </thead>
 
-    <tbody aria-live="polite" aria-relevant="all">
-    </tbody>
+    <tbody></tbody>
     </table>
 
 <!-- STATS TABLE END -->
