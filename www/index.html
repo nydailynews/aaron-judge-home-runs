@@ -294,8 +294,8 @@ var slugger = {
     },
     play: function() {
         // Start the animation
+        if ( typeof playpause === 'undefined' ) animate();
         playpause = 'play';
-        animate();
         $('#play').addClass('hide');
         $('#pause').removeClass('hide');
     },
