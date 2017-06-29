@@ -374,7 +374,14 @@ var ani = {
             var positions = ani.lines[0].geometry.attributes.position.array;
 
             var animate = function () {
-                if ( typeof playpause !== 'undefined' && playpause === 'pause' ) return false;
+                if ( typeof playpause !== 'undefined' && playpause === 'pause' ) 
+                {
+                    ani.balls[hitIndex].rotation.y += 0.08;
+                    ani.balls[hitIndex].rotation.x += 0.04;
+                    requestAnimationFrame( animate );
+                    renderer.render(scene, camera);
+                    return false;
+                }
 
                 requestAnimationFrame( animate );
 
