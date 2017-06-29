@@ -394,36 +394,6 @@ var ani = {
                 renderer.render(scene, camera);
             };
 
-            // For placing the ball, left field line to right field line
-            var location_lookup = {
-                lf_line: 60,
-                lf: 70,
-                lf_cf: 80,
-                cf: 90,
-                cf_rf: 100,
-                rf: 110,
-                rf_line: 120
-            }
-
-            // sample data array
-            var hits = [
-                {
-                    s: 105.3 * 5280/3600, // Speed off bat (converting mph to fps)
-                    r: 426, // distance... not 100% sure if this should be std or true
-                    t: 58 - (225) // horizontal angle - 225 to orient the degrees in the chart to our system
-                },
-                {
-                    s: 102.8 * 5280/3600,
-                    r: 420,
-                    t: 89.6 - (225)
-                },
-                {
-                    s: 99.9 * 5280/3600,
-                    r: 386,
-                    t: 130 - (225)
-                }
-            ];
-
             // return the total flight time of a hit
             var flightTime = function(hit)
             {
