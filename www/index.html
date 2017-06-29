@@ -367,16 +367,17 @@ var vertices = new Float32Array( [
                 cube.rotation.y += 0.08;
                 cube.rotation.x += 0.04;
                 
+                positions[ index ] = point.x;
                 index += 1;
-    positions[ index ] = point.x;
-    positions[ index ] = point.y;
-    positions[ index ] = point.z;
+                positions[ index ] = point.y;
+                index += 1;
+                positions[ index ] = point.z;
+                index += 1;
                 //line.position.x = point.x;
                 //line.position.y = point.y;
                 //line.position.z = point.z;
-    line.geometry.setDrawRange( 0, index );
-    line.geometry.attributes.position.needsUpdate = true;
-                //line.geometry.vertices.push(new THREE.Vector3( point.x, point.y, point.z ))
+                line.geometry.setDrawRange( 0, index );
+                line.geometry.attributes.position.needsUpdate = true;
 
                 /*
                     // here is "from the ball's perspective" 
