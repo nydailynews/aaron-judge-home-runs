@@ -62,9 +62,7 @@ figcaption {
     margin-bottom: 15px;
 }
 
-/*TABLE STYLES*/
-
-.compare {
+table {
     margin: auto;
 }
 
@@ -73,7 +71,8 @@ thead {
     cursor: pointer;
 }
 
-th {
+th, button {
+    cursor: pointer;
     font-size: 12px;
     text-transform: uppercase;
     border: 1px solid #808080;
