@@ -203,7 +203,10 @@
 
     <div id="field">
         <img src="img/baseball-field-deluxe.png" alt="An illustration of a baseball field">
-        <div id="info"></div>
+        <div id="info" class="hide">
+            <h2>The homer</h2>
+            <p></p>
+        </div>
     </div>
 
 <!-- STATS TABLE STARTS HERE -->
@@ -300,7 +303,11 @@ var slugger = {
     },
     play: function() {
         // Start the animation
-        if ( typeof playpause === 'undefined' ) animate();
+        if ( typeof playpause === 'undefined' ) 
+        {
+            animate();
+            $('#info').removeClass('hide');
+        }
         playpause = 'play';
         $('#play').addClass('hide');
         $('#pause').removeClass('hide');
@@ -321,6 +328,11 @@ var slugger = {
     },
     restart: function() {
         hitIndex = 0;
+        for( var i = scene.children.length - 1; i >= 0; i--) 
+        {
+            obj = scene.children[i];
+            scene.remove(obj);
+        }
         this.play();
     },
     load_ani: function() {
@@ -541,7 +553,8 @@ slugger.init();
     background: rgba(255,255,255,0.8);
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
-    float: left;
+    height: auto;
+    position: absolute;
 }
 </body>
 </html>
