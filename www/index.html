@@ -208,8 +208,8 @@
 
 <!-- STATS TABLE STARTS HERE -->
 
-<script src="js/float-header.js"></script>
-<script src="js/table-sorter.js"></script>
+<!-- <script src="js/float-header.js"></script>
+ --><script src="js/table-sorter.js"></script>
 
     <div id="container">
         <div class="stats-text">
@@ -221,15 +221,16 @@
             <p>Click a table column to sort by that column.</p>
         </div>
         <table id="homers" class="tablesorter compare">
+        <caption>Home Run Details</caption>
             <col><col><col><col><col><col>
             <thead>
                 <tr>
-                    <th><a>Number</a></th>
-                    <th><a>Date</a></th>
-                    <th><a>Distance</a></th>
-                    <th><a>Exit Velocity</a></th>
-                    <th><a>Opponent</a></th>
-                    <th><a>Count</a></th>
+                    <th scope="col"><a>Number</a></th>
+                    <th scope="col"><a>Date</a></th>
+                    <th scope="col"><a>Distance</a></th>
+                    <th scope="col"><a>Exit Velocity</a></th>
+                    <th scope="col"><a>Opponent</a></th>
+                    <th scope="col"><a>Count</a></th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -271,12 +272,12 @@ var slugger = {
     table_row: function(item) {
         // Write a table row's data
         tb = $('#homers tbody');
-        var row = '<tr><td>' + item['Home-Run-No.'] + '</td>\n\
-    <td>' + item['Date'] + '</td>\n\
-    <td>' + item['Distance'] + ' feet</td>\n\
-    <td>' + item['Exit-Velocity'] + ' mph</td>\n\
-    <td>' + item['Opponent'].replace('-', ' ') + '</td>\n\
-    <td>' + item['Count'] + '</td>\n\
+        var row = '<tr><td data-label="Home Run Number">' + item['Home-Run-No.'] + '</td>\n\
+    <td data-label="Date">' + item['Date'] + '</td>\n\
+    <td data-label="Distance">' + item['Distance'] + ' feet</td>\n\
+    <td data-label="Exit Velocity">' + item['Exit-Velocity'] + ' mph</td>\n\
+    <td data-label="Opponent">' + item['Opponent'].replace('-', ' ') + '</td>\n\
+    <td data-label="Count">' + item['Count'] + '</td>\n\
 </tr>';
         tb.append(row);
     },
@@ -331,10 +332,10 @@ var slugger = {
         var $table = $('.tablesorter');
         var tb_offset = 75;
         if ( is_mobile ) tb_offset = 29;
-        $table.floatThead({
-            responsiveContainer: function($table){ return $table.closest('.container'); },
-            //top: tb_offset
-        });
+        // $table.floatThead({
+        //     responsiveContainer: function($table){ return $table.closest('.container'); },
+        //     //top: tb_offset
+        // });
     },
     init: function() {
         // Called on page load.
