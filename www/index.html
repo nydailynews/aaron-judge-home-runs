@@ -293,7 +293,7 @@ var slugger = {
         var dis = item['Distance'];
         if ( dis == '495' ) dis += "<span style='color:red;'>(!)</span>";
         var desc = dis + ' feet, hit against ' + opp + ' on ' + item['Date'].replace('/17', '');
-        p.text(desc);
+        p.html(desc);
     },
     hits:  [],
     table_row: function(item) {
