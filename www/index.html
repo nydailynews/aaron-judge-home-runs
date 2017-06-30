@@ -283,7 +283,9 @@ var slugger = {
         $('#number').text(item['Home-Run-No.']);
         var p = $('#info p');
         var opp = item['Opponent'].replace('-', ' ');
-        var desc = item['Distance'] + ' feet, hit against ' + opp + ' on ' + item['Date'].replace('/17', '');
+        var dis = item['Distance'];
+        if ( dis == '495' ) dis += "<span style='color:red;'>(!)</span>";
+        var desc = dis + ' feet, hit against ' + opp + ' on ' + item['Date'].replace('/17', '');
         p.text(desc);
     },
     hits:  [],
@@ -565,7 +567,7 @@ slugger.init();
     background-image: url('img/baseball-field-deluxe.png');
     background-repeat: no-repeat;
     background-color: #fafafa;
-    background-position: center 0;
+    background-position: center 20px;
 }
 #info {
     padding: 6px 8px;
