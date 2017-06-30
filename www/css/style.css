@@ -40,10 +40,16 @@ h3 {
 }
 
 p.byline {
-    font: normal 12px "Open Sans", sans-serif;
+    font: normal 14px "Open Sans", sans-serif;
     width: 90%;
     margin: auto;
     text-align: center;
+}
+
+figcaption {
+    padding-top: 10px;
+    font: normal 12px "Open Sans", sans-serif;
+    line-height: 1;
 }
 
 #container {
