@@ -270,7 +270,14 @@ function judge_homeruns_callback(data) { slugger.data = data; slugger.load_ani()
 var slugger = {
     draw_field: function() {},
     play_hit: function() {},
-    update_statbox: function() {},
+    update_statbox: function(id) {
+        if ( this.data.length == +id ) return false;
+        var item = this.data[id];
+        var p = $('#info p');
+        var opp = item['Opponent'].replace('-', ' ');
+        var desc = item['Distance'] + ' feet, hit against ' + opp + ' on ' + item['Date'];
+        p.text(desc);
+    },
     hits:  [],
     table_row: function(item) {
         // Write a table row's data
@@ -306,6 +313,7 @@ var slugger = {
         if ( typeof playpause === 'undefined' ) 
         {
             animate();
+            slugger.update_statbox(0);
             $('#info').removeClass('hide');
         }
         playpause = 'play';
@@ -371,7 +379,7 @@ var ani = {
     make_line: function() {
         // Return a line object
         // Add a line to trace the ball's path.
-        var MAX_POINTS = 60;
+        var MAX_POINTS = 55;
         geometry = new THREE.BufferGeometry();
         var positions = new Float32Array( MAX_POINTS * 3 );
         geometry.addAttribute( 'position', new THREE.BufferAttribute( positions, 3) );
@@ -431,7 +439,7 @@ var ani = {
                 if (t > maxT)
                 {
                     // CAPTION FOR PREVIOUS HOME RUN
-
+                    slugger.update_statbox(hitIndex + 1);
 
                     // HANDLE THE NEXT HOME RUN
                     index = 0;
