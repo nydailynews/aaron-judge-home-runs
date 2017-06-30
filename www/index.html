@@ -222,12 +222,12 @@
  --><script src="js/table-sorter.js"></script>
 
     <div id="container">
+        <p id="interface">
+            <a href="#" onClick="slugger.play(); return false;" id="play">Play</a>
+            <a href="#" onClick="slugger.pause(); return false;" id="pause" class="hide">Pause</a>
+            <a href="#" onClick="slugger.restart(); return false;" id="restart" class="hide">Restart</a>
+        </p>
         <div class="stats-text">
-            <p id="interface">
-                <a href="#" onClick="slugger.play(); return false;" id="play">Play</a>
-                <a href="#" onClick="slugger.pause(); return false;" id="pause" class="hide">Pause</a>
-                <a href="#" onClick="slugger.restart(); return false;" id="restart" class="hide">Restart</a>
-            </p>
             <p>Click a table column to sort by that column.</p>
         </div>
         <table id="homers" class="tablesorter compare">
@@ -322,6 +322,8 @@ var slugger = {
         // Start the animation
         if ( typeof playpause === 'undefined' ) 
         {
+            // On the first press of the paly button.
+            // One of like four different setup chunks of the script.
             animate();
             slugger.update_statbox(0);
             $('#info').removeClass('hide');
@@ -359,17 +361,22 @@ var slugger = {
 
         // Make the table sortable
         $(".tablesorter").tablesorter();
-        var $table = $('.tablesorter');
-        var tb_offset = 75;
-        if ( is_mobile ) tb_offset = 29;
-        // $table.floatThead({
-        //     responsiveContainer: function($table){ return $table.closest('.container'); },
-        //     //top: tb_offset
-        // });
+
     },
     init: function() {
         // Called on page load.
         $.getJSON('http://interactive.nydailynews.com/chart/output/judge-homeruns.jsonp?callback=?', function() {});
+        // On smaller viewports, adjust the background image size.
+        var w = $('canvas').width();
+        if ( w < 1100 )
+        {
+            console.log(w);
+            var ratio = w / 1100;
+            var new_w = ratio * 1024;
+            var new_h = ratio * 602;
+            console.log(ratio, new_w, new_h);
+            $('#field canvas').css('background-size', new_w + 'px ' + new_h + 'px');
+        }
     }
 };
 

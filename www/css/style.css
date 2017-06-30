@@ -190,6 +190,8 @@ table caption {
     text-transform: uppercase;
   }
   
+    #info h2 { font-size: 16px; }
+    #info p { font-size: 12px; }
 }
 
 /* Fixes for social menu */
@@ -212,3 +214,4 @@ div.ad > span {
 }
 
 .hide { display: none; }
+p#interface { text-align: center; }
