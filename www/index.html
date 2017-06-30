@@ -218,7 +218,7 @@
     <div id="field">
         <img src="img/baseball-field-deluxe.png" alt="An illustration of a baseball field">
         <div id="info" class="hide">
-            <h2>The homer</h2>
+            <h2>Home run number <span id="number"></span></h2>
             <p></p>
         </div>
     </div>
@@ -287,9 +287,12 @@ var slugger = {
     update_statbox: function(id) {
         if ( this.data.length == +id ) return false;
         var item = this.data[id];
+        $('#number').text(item['Home-Run-No.']);
         var p = $('#info p');
         var opp = item['Opponent'].replace('-', ' ');
-        var desc = item['Distance'] + ' feet, hit against ' + opp + ' on ' + item['Date'];
+        var dis = item['Distance'];
+        if ( dis == '495' ) dis += "<span style='color:red;'>(!)</span>";
+        var desc = dis + ' feet, hit against ' + opp + ' on ' + item['Date'].replace('/17', '');
         p.text(desc);
     },
     hits:  [],
@@ -388,6 +391,8 @@ var ani = {
         var material = new THREE.MeshBasicMaterial( { map:this.ball_texture, overdraw: 0.5, color:0xffffff } );
         var cube = new THREE.Mesh( geometry, material );            
         scene.add( cube );
+        //var start = new THREE.Vector3( 100, 100, 0 );
+        //cube.position = start;
         return cube;
     },
     make_line: function() {
@@ -402,6 +407,8 @@ var ani = {
         material = new THREE.LineBasicMaterial( { color: 0xff0000, linewidth: 10 } );
         line = new THREE.Line( geometry,  material );
         scene.add( line );
+        //var start = new THREE.Vector3( 100, 100, 0 );
+        //line.position = start;
         return line;
     }
 };
@@ -440,6 +447,7 @@ var ani = {
             var animate = function () {
                 if ( typeof playpause !== 'undefined' && playpause === 'pause' ) 
                 {
+                    // WHEN PAUSED
                     ani.balls[hitIndex].rotation.y += 0.08;
                     ani.balls[hitIndex].rotation.x += 0.04;
                     requestAnimationFrame( animate );
@@ -566,7 +574,7 @@ slugger.init();
     background-image: url('img/baseball-field-deluxe.png');
     background-repeat: no-repeat;
     background-color: #fafafa;
-    background-position: center 0;
+    background-position: center 20px;
 }
 #info {
     padding: 6px 8px;
