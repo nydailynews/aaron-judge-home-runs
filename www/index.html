@@ -293,7 +293,8 @@
 </div>
 <footer id="templatefooter"></footer>
 <script>
-function judge_homeruns_callback(data) { slugger.data = data.slice(0,5); slugger.load_ani(); }
+//function judge_homeruns_callback(data) { slugger.data = data.slice(0,5); slugger.load_ani(); }
+function judge_homeruns_callback(data) { slugger.data = data; slugger.load_ani(); }
 
 var slugger = {
     draw_field: function() {},
@@ -339,6 +340,7 @@ var slugger = {
             this.table_row(this.data[i]);
         }
         window.maxT = flightTime(this.hits[0]);
+        window.maxHits = slugger.hits.length
         return true;
     },
     interface_: {
@@ -406,7 +408,7 @@ var slugger = {
         ani.balls[hitIndex] = ani.make_ball();
         ani.lines[hitIndex] = ani.make_line();
         positions = ani.lines[hitIndex].geometry.attributes.position.array;
-        slugger.hits.length = item;
+        maxHits = item;
         this.play();
         slugger.update_statbox(hitIndex);
     },
@@ -513,7 +515,7 @@ var ani = {
                 requestAnimationFrame( animate );
 
                 // figure out t (number of seconds into the flight)
-                if (t > maxT)
+                if ( t > maxT )
                 {
                     // HANDLE THE NEXT HOME RUN
                     index = 0;
@@ -522,7 +524,7 @@ var ani = {
                     ani.balls[hitIndex] = ani.make_ball();
                     ani.lines[hitIndex] = ani.make_line();
                     positions = ani.lines[hitIndex].geometry.attributes.position.array;
-                    if (hitIndex == slugger.hits.length)                    
+                    if ( hitIndex == maxHits )
                     {
                         // END THE ANIMATION
                         slugger.end();
