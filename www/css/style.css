@@ -111,12 +111,6 @@ table caption {
     display: none;
 }
 
-#field canvas {
-    background-image: url('img/baseball-field-deluxe.png');
-    background-repeat: no-repeat;
-    background-color: #fafafa;
-    background-position: center 20px;
-}
 #info {
     padding: 6px 8px;
     font: 14px/16px Arial, Helvetica, sans-serif;
