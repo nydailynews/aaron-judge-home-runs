@@ -235,7 +235,7 @@
             <button onClick="slugger.restart(); return false;" id="restart" class="hide">Restart</button>
         </p>
         <div class="stats-text">
-            <p>Click a table column to sort by that column.</p>
+            <p>Click a column to sort by that category.</p>
         </div>
         <table id="homers" class="tablesorter compare">
         <caption>Home Run Details</caption>
@@ -244,10 +244,10 @@
                 <tr>
                     <th scope="col"><a>Number</a></th>
                     <th scope="col"><a>Date</a></th>
-                    <th scope="col"><a>Distance</a></th>
-                    <th scope="col"><a>Exit Velocity</a></th>
+                    <th scope="col"><a>Distance<br>(in feet)</a></th>
+                    <th scope="col"><a>Exit Velocity<br>(in mph)</a></th>
                     <th scope="col"><a>Opponent</a></th>
-                    <th scope="col"><a>Count</a></th>
+                    <th scope="col"><a>Pitcher</a></th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -301,10 +301,10 @@ var slugger = {
         tb = $('#homers tbody');
         var row = '<tr><td data-label="Home Run Number">' + item['Home-Run-No.'] + '</td>\n\
     <td data-label="Date">' + item['Date'] + '</td>\n\
-    <td data-label="Distance">' + item['Distance'] + ' feet</td>\n\
-    <td data-label="Exit Velocity">' + item['Exit-Velocity'] + ' mph</td>\n\
+    <td data-label="Distance (feet)">' + item['Distance'] + '</td>\n\
+    <td data-label="Exit Velocity (mph)">' + item['Exit-Velocity'] + '</td>\n\
     <td data-label="Opponent">' + item['Opponent'].replace('-', ' ') + '</td>\n\
-    <td data-label="Count">' + item['Count'] + '</td>\n\
+    <td data-label="Pitcher">' + item['Pitcher'] + '</td>\n\
 </tr>';
         tb.append(row);
     },
