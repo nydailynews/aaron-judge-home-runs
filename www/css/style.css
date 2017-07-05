@@ -182,6 +182,11 @@ table caption {
     position: absolute;
     width: 1px;
   }
+
+  tbody {
+    line-height: 19px;
+}
+
   table tr {
     width: 270px;
     border-bottom: 3px solid #808080;
