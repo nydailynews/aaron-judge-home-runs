@@ -73,12 +73,13 @@ thead {
 
 th, button {
     cursor: pointer;
-    font-size: 12px;
+    font-size: 10px;
     text-transform: uppercase;
     border: 1px solid #808080;
     font-family: 'Open Sans', sans-serif;
-    padding: 13px 26px;
+    padding: 7px 0;
     vertical-align: middle;
+    width: 125px;
 }
 
 th a {
@@ -220,4 +221,7 @@ div.ad > span {
 }
 
 .hide { display: none; }
-p#interface { text-align: center; }
+p#interface {
+    text-align: center;
+    margin-bottom: 30px;
+}
