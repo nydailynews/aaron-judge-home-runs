@@ -73,12 +73,13 @@ thead {
 
 th, button {
     cursor: pointer;
-    font-size: 12px;
+    font-size: 10px;
     text-transform: uppercase;
     border: 1px solid #808080;
     font-family: 'Open Sans', sans-serif;
-    padding: 13px 26px;
+    padding: 7px 0;
     vertical-align: middle;
+    width: 125px;
 }
 
 th a {
@@ -212,13 +213,6 @@ table caption {
     #info p { font-size: 12px; }
 }
 
-/* Fixes for social menu */
-/*body #rh-subnav-wrap {
-    padding: 10px 20px 0;
-}
-#rh-subnav ul {
-    width: 200px;
-}*/
 .center {
     text-align: center;
     margin: auto;
@@ -234,5 +228,8 @@ div.ad > span {
 .hide { display: none; }
 p#interface {
     text-align: center;
-    margin-bottom: 10px;
+}
+p#interface button {
+    margin-top: -65px;
+    font-size: 14px;
 }
