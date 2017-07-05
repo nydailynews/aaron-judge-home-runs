@@ -317,7 +317,7 @@ var slugger = {
         var date_item = '<a href="' + item['Game-Story-URL'] + '">' + item['Date'] + '</a>';
         if ( item['Game-Story-URL'] === '' ) date_item = item['Date'];
 
-        var row = '<tr><td data-label="Home Run Number"><a onClick="slugger.play_one(' + item['Home-Run-No.'] + '); return false;" title="Replay this home run">' + item['Home-Run-No.'] + '</a></td>\n\
+        var row = '<tr><td data-label="Home Run Number"><a href="#field" onClick="slugger.play_one(' + item['Home-Run-No.'] + ');" title="Replay this home run">' + item['Home-Run-No.'] + '</a></td>\n\
     <td data-label="Date">' + date_item + '</td>\n\
     <td data-label="Distance (feet)">' + item['Distance'] + '</td>\n\
     <td data-label="Exit Velocity (mph)">' + item['Exit-Velocity'] + '</td>\n\
@@ -410,7 +410,7 @@ var slugger = {
         positions = ani.lines[hitIndex].geometry.attributes.position.array;
         maxHits = item;
         this.play();
-        slugger.update_statbox(hitIndex);
+        //slugger.update_statbox(hitIndex);
     },
     load_ani: function() {
         // Called once the data's loaded, this does most of the work.
