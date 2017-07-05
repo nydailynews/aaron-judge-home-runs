@@ -101,6 +101,10 @@ td {
     vertical-align: middle;
 }
 
+td a {
+    cursor: pointer;
+}
+
 tr:nth-child(even) {
     background-color: #dedede; }
 
