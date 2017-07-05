@@ -232,4 +232,7 @@ div.ad > span {
 }
 
 .hide { display: none; }
-p#interface { text-align: center; }
+p#interface {
+    text-align: center;
+    margin-bottom: 10px;
+}
