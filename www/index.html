@@ -295,15 +295,18 @@ var slugger = {
     hits:  [],
     table_row: function(item) {
         // Write a table row's data
-        tb = $('#homers tbody');
+
+        var date_item = '<a href="' + item['Game-Story-URL'] + '">' + item['Date'] + '</a>';
+        if ( item['Game-Story-URL'] === '' ) date_item = item['Date'];
+
         var row = '<tr><td data-label="Home Run Number">' + item['Home-Run-No.'] + '</td>\n\
-    <td data-label="Date">' + item['Date'] + '</td>\n\
+    <td data-label="Date">' + date_item + '</td>\n\
     <td data-label="Distance (feet)">' + item['Distance'] + '</td>\n\
     <td data-label="Exit Velocity (mph)">' + item['Exit-Velocity'] + '</td>\n\
     <td data-label="Opponent">' + item['Opponent'].replace('-', ' ') + '</td>\n\
     <td data-label="Pitcher">' + item['Pitcher'] + '</td>\n\
 </tr>';
-        tb.append(row);
+        $('#homers tbody').append(row);
     },
     process_hits: function() {
         // Handle the hit information from the spreadsheet.
