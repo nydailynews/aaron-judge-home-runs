@@ -265,6 +265,12 @@
     </div>
   </div>
 
+	<h2>Aaron Judge in the news</h2>
+	<p>Recent Aaron Judge headlines from the New York Daily News.</p>
+<?php
+
+?>
+
 </article>
 
 </div>
@@ -306,7 +312,7 @@ var slugger = {
         var desc = dis + ' feet, hit against the ' + opp + ' on ' + item['Date'].replace('/17', '');
         p.html(desc);
     },
-    hits:  [],
+    hits: [],
     table_row: function(item) {
         // Write a table row's data
 
