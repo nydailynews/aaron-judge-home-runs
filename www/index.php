@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Aaron Judge is a home-run machine by the NY Daily News</title>
+    <title>Aaron Judge home run tracker: Follow Yankee rookie's mammoth blasts by the NY Daily News</title>
     <link rel="icon" type="image/png" href="http://interactive.nydailynews.com/favicons.png">
     <!-- DEFAULT -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,8 +13,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 
     <!-- TITLES-->
-    <meta property="og:title" content='Interactive - Aaron Judge: Home Run Machine' />
-    <meta name="twitter:title" content='Interactive - Aaron Judge: Home Run Machine'/>
+    <meta property="og:title" content="Aaron Judge home run tracker: Follow Yankee rookie's mammoth blasts" />
+    <meta name="twitter:title" content="Aaron Judge home run tracker: Follow Yankee rookie's mammoth blasts"/>
 
     <!-- DESCRIPTION-->
     <meta name="description" content="Aaron Judge: Home Run Machine" />
@@ -41,7 +41,7 @@
         {
             "@context": "http://schema.org",
             "@type": "NewsArticle",
-            "headline": "Interactive - Aaron Judge: Home Run Machine",
+            "headline": "Aaron Judge home run tracker: Follow Yankee rookie's mammoth blasts",
             "url": "http://interactive.nydailynews.com/project/judge-homers",
             "thumbnailUrl": "http://interactive.nydailynews.com/project/judge-homers/img/aaron-judge.jpg",
             "dateCreated": "2017-07-10T06:00:00Z",
