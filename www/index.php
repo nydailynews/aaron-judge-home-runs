@@ -14,25 +14,25 @@
 
     <!-- TITLES-->
     <meta property="og:title" content="Aaron Judge home run tracker: Follow Yankee rookie's mammoth blasts" />
-    <meta name="twitter:title" content="Aaron Judge home run tracker: Follow Yankee rookie's mammoth blasts"/>
+    <meta name="twitter:title" content="Aaron Judge home run tracker"/>
 
     <!-- DESCRIPTION-->
-    <meta name="description" content="Aaron Judge: Home Run Machine" />
-    <meta property="og:description" content="Aaron Judge: Home Run Machine" />
-    <meta name="twitter:description" content="Aaron Judge: Home Run Machine" />
+    <meta name="description" content="Yankees rookie Aaron Judge is hitting homers at record pace and all eyes are on every at-bat. Follow along as we record each of his massive bombs." />
+    <meta property="og:description" content="Yankees rookie Aaron Judge is hitting homers at record pace and all eyes are on every at-bat. Follow along as we record each of his massive bombs." />
+    <meta name="twitter:description" content="Yankees rookie Aaron Judge is hitting homers at record pace and all eyes are on every at-bat. Follow along as we record each of his massive bombs." />
 
     <!-- KEYWORD -->
-    <meta name="keywords" content="aaron judge,yankees,home runs,daily news" />
-    <meta name="news_keywords" content="aaron judge,yankees,home runs,daily news" />
+    <meta name="keywords" content="aaron judge,yankees,home runs, aaron judge stats, new york Yankees,nyyankees,aaron judge longest home run,daily news" />
+    <meta name="news_keywords" content="aaron judge,yankees,home runs, aaron judge stats, new york Yankees,nyyankees,aaron judge longest home run,daily news" />
 
     <!-- LINK -->
-    <link rel="canonical" href="http://interactive.nydailynews.com/project/judge-homers/">
-    <meta property="og:url" content="http://interactive.nydailynews.com/project/judge-homers" />
-    <meta name="twitter:url" content="http://interactive.nydailynews.com/project/judge-homers">
+    <link rel="canonical" href="http://interactive.nydailynews.com/project/aaron-judge-home-runs/">
+    <meta property="og:url" content="http://interactive.nydailynews.com/project/aaron-judge-home-runs" />
+    <meta name="twitter:url" content="http://interactive.nydailynews.com/project/aaron-judge-home-runs">
 
     <!-- THUMBNAIL IMAGE-->
-    <meta property="og:image" content="http://interactive.nydailynews.com/project/judge-homers/img/aaron-judge.jpg" />
-    <meta name="twitter:image:src" content="http://interactive.nydailynews.com/project/judge-homers/img/aaron-judge.jpg" />
+    <meta property="og:image" content="http://interactive.nydailynews.com/project/aaron-judge-home-runs/img/aaron-judge.jpg" />
+    <meta name="twitter:image:src" content="http://interactive.nydailynews.com/project/aaron-judge-home-runs/img/aaron-judge.jpg" />
     <meta property="og:image:width" content="500" />
     <meta property="og:image:height" content="662" />
 
@@ -42,8 +42,8 @@
             "@context": "http://schema.org",
             "@type": "NewsArticle",
             "headline": "Aaron Judge home run tracker: Follow Yankee rookie's mammoth blasts",
-            "url": "http://interactive.nydailynews.com/project/judge-homers",
-            "thumbnailUrl": "http://interactive.nydailynews.com/project/judge-homers/img/aaron-judge.jpg",
+            "url": "http://interactive.nydailynews.com/project/aaron-judge-home-runs",
+            "thumbnailUrl": "http://interactive.nydailynews.com/project/aaron-judge-home-runs/img/aaron-judge.jpg",
             "dateCreated": "2017-07-10T06:00:00Z",
             "articleSection": "Interactive",
             "creator": ["Interactive Project", "Joe Murphy", "Kelli R. Parker"],
@@ -88,7 +88,7 @@
     };
     var nydnDO = [ { 
             'title':'xxxAaron Judge: Home Run Machinexxx', 
-            'link':'http://interactive.nydailynews.com/project/judge-homers/', 
+            'link':'http://interactive.nydailynews.com/project/aaron-judge-home-runs/', 
             'p_type':'interactive', 
             'section':'interactive' } ];
     </script>
@@ -197,9 +197,9 @@
     <h1>All rise for Aaron Judge's blasts</h1>
     <div>
         <ul class="ra-share" id="ra-share-top" style="text-align: center;">
-            <li class="rt-share-f"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://interactive.nydailynews.com/project/judge-homers">facebook</a></li>
-            <li class="ra-share-t"> <a target="_blank" href="https://twitter.com/intent/tweet?text=Aaron Judge is a home run machine %20http://interactive.nydailynews.com/project/judge-homers/">Tweet</a></li>
-            <li class="ra-share-e"> <a href="mailto:?subject=Aaron Judge is a home run machine&amp;body=The pinstriped rookie is belting home runs at a record pace and all eyes are on his every at-bat. http://interactive.nydailynews.com/project/judge-homers/">email</a> </li>
+            <li class="rt-share-f"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://interactive.nydailynews.com/project/aaron-judge-home-runs">facebook</a></li>
+            <li class="ra-share-t"> <a target="_blank" href="https://twitter.com/intent/tweet?text=Aaron Judge is a home run machine.  Follow along as we track each one of his mammoth blasts&url=http://interactive.nydailynews.com/project/aaron-judge-home-runs/&via=NYDNSports&related=NYDailyNews,aclayton33">Tweet</a></li>
+            <li class="ra-share-e"> <a href="mailto:?subject=Aaron Judge home run tracker&amp;body=The Yankees rookie is belting home runs at a record pace and all eyes are on his every at-bat.  Follow along as the Daily News records each of his mammoth blasts. http://interactive.nydailynews.com/project/aaron-judge-home-runs/">email</a> </li>
         </ul>
     </div>
     <p>
@@ -238,8 +238,7 @@
         <div class="stats-text">
             <p>
 				Click a column to sort by that category.
-				Click a home run number to replay that home run,
-				and click the date of the home run to read the Daily News' coverage of that game.
+				Click a number to replay that home run and click the date of the blast to read the Daily News' game coverage.
 			</p>
         </div>
         <table id="homers" class="tablesorter compare">
