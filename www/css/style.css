@@ -12,7 +12,15 @@ img {
     display: block;
 }
 
-p {
+ol, ul { 
+
+}
+
+li {
+    list-style-position: inside;
+}
+
+p, li {
     font-family: 'PT Serif', serif;
     font-size: 20px;
     line-height: 30px;
@@ -140,7 +148,7 @@ table caption {
         width: 100%;
     }
 
-    article p {
+    article p, article li {
         font-size: 15px;
         line-height: 23px;
     }

@@ -271,9 +271,11 @@
 
 	<h2>Aaron Judge in the news</h2>
 	<p>Recent Aaron Judge headlines from the New York Daily News.</p>
+	<ul>
 <?php
-
+echo file_get_contents('recent.html');
 ?>
+	</ul>
 
 </article>
 
