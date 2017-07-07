@@ -62,15 +62,12 @@ class RecentJson:
             """
         items = []
         for item in self.p:
-            items.append(item)
-
-        return items
-        for item in self.p:
             # print item.keys()
             # [u'body', u'tags', u'url', u'contentId', u'abstract', u'author', u'lastUpdated', u'mobileTitle', u'mobileUrl', u'publish_date', u'images', u'title', u'type', u'categories']
-            print item['publish_date']
+            #print item['publish_date']
             # Fri, 7 Jul 2017 15:16:38 -0400
-            dt = datetime.strptime(item['publish_date'], '%a, %d %b %Y %X %z')
+            #dt = datetime.strptime(item['publish_date'], '%a, %d %b %Y %X %z')
+            dt = datetime.strptime(' '.join(item['publish_date'].split(' ')[:5]), '%a, %d %b %Y %X')
             delta = datetime.today() - dt
 
             if delta.days > int(self.days):
@@ -80,6 +77,39 @@ class RecentJson:
                 print delta.days, dt
         self.items = items
         return items
+
+def pretty_date(ago):
+    """ Process a timedelta object.
+    From https://stackoverflow.com/questions/1551382/user-friendly-time-format-in-python
+    """
+    second_diff = ago.seconds
+    day_diff = ago.days
+
+    if day_diff < 0:
+        return ''
+
+    if day_diff == 0:
+        if second_diff < 10:
+            return "just now"
+        if second_diff < 60:
+            return str(second_diff) + " seconds ago"
+        if second_diff < 120:
+            return "a minute ago"
+        if second_diff < 3600:
+            return str(second_diff / 60) + " minutes ago"
+        if second_diff < 7200:
+            return "an hour ago"
+        if second_diff < 86400:
+            return str(second_diff / 3600) + " hours ago"
+    if day_diff == 1:
+        return "Yesterday"
+    if day_diff < 7:
+        return str(day_diff) + " days ago"
+    if day_diff < 31:
+        return str(day_diff / 7) + " weeks ago"
+    if day_diff < 365:
+        return str(day_diff / 30) + " months ago"
+    return str(day_diff / 365) + " years ago"
 
 def main(args):
     """ For command-line use.
@@ -94,7 +124,6 @@ def main(args):
             rj.parse()
             articles.append(rj.recently())
 
-
         for i, article in enumerate(articles[0]):
             if i > args.limit and args.limit > 0:
                 break 
@@ -102,13 +131,17 @@ def main(args):
             if args.output == 'html':
                 if type(article['title']) is types.UnicodeType:
                     article['title'] = article['title'].encode('utf-8', 'replace')
-                print '<li><a href="{0}">{1}</a></li>'.format(article['url'], article['title'])
+                dt = datetime.strptime(' '.join(article['publish_date'].split(' ')[:5]), '%a, %d %b %Y %X')
+                ago = datetime.now() - dt
+                # print ago
+                # 2 days, 15:57:48.578638
+                print '<li><a href="{0}">{1}</a> <span>(published {2})</span></li>'.format(article['url'], article['title'], pretty_date(ago).lower())
             elif args.output == 'json':
                 print json.dumps({'title': article['title'],
                     'id': article['id'],
                     'description': article['description']})
             elif args.output == 'csv':
-                dt = datetime.fromtimestamp(mktime(article.published_parsed))
+                dt = datetime.strptime(' '.join(article['publish_date'].split(' ')[:5]), '%a, %d %b %Y %X')
                 article['datetime'] = '%s-%s-%s' % (dt.year, dt.month, dt.day)
                 if dt.month < 10:
                     article['datetime'] = '%d-0%d-%d' % (dt.year, dt.month, dt.day)
@@ -127,7 +160,7 @@ def build_parser():
     """ We put the argparse in a method so we can test it
         outside of the command-line.
         """
-    parser = argparse.ArgumentParser(usage='$ python recentfeed.py http://domain.com/rss/',
+    parser = argparse.ArgumentParser(usage='$ python recentjson.py http://domain.com/json/',
                                      description='''Takes a list of URLs passed as args.
                                                   Returns the items published today unless otherwise specified.''',
                                      epilog='')
