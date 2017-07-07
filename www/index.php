@@ -217,6 +217,7 @@
     <hr>
 
     <p class="byline">By Andy Clayton, Andy Lippitt, Will Lippitt, James Miller, Joe Murphy and Kelli R. Parker</p>
+	<p class="byline"><em>Last updated <span id="datestamp"></span></em></p>
 
     <div id="field">
         <img src="img/baseball-field-deluxe.png" alt="An illustration of a baseball field">
@@ -316,8 +317,8 @@ var slugger = {
     table_row: function(item) {
         // Write a table row's data
 
-        var date_item = '<a href="' + item['Game-Story-URL'] + '">' + item['Date'] + '</a>';
-        if ( item['Game-Story-URL'] === '' ) date_item = item['Date'];
+        var date_item = '<a href="' + item['Game-Story-URL'] + '">' + item['Date'].replace('/17', '') + '</a>';
+        if ( item['Game-Story-URL'] === '' ) date_item = item['Date'].replace('/17', '');
 
         var row = '<tr><td data-label="Home Run Number"><a href="#field" onClick="slugger.play_one(' + item['Home-Run-No.'] + ');" title="Replay this home run">' + item['Home-Run-No.'] + '</a></td>\n\
     <td data-label="Date">' + date_item + '</td>\n\
@@ -421,15 +422,19 @@ var slugger = {
         // Make the table sortable
         $(".tablesorter").tablesorter();
 
+		// Update the Last Updated timestamp
+		latest_homer = this.data[this.data.length - 1];
+		$('#datestamp').html(latest_homer['Date'].replace('/17', ''));
+
     },
     init: function() {
         // Called on page load.
         $.getJSON('http://interactive.nydailynews.com/chart/output/judge-homeruns.jsonp?callback=?', function() {});
+
         // On smaller viewports, adjust the background image size.
         var w = $('canvas').width();
         if ( w < 1100 )
         {
-            console.log(w);
             var ratio = w / 1100;
             var new_w = ratio * 1024;
             var new_h = ratio * 602;
