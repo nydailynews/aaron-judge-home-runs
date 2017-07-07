@@ -205,6 +205,7 @@
     <p>
         <strong>Aaron Judge hits the ball deep.</strong> Aaron Judge hits the ball far. The hulking 6-7 Baby Bomber has become the face of the Yankees youth movement and one of the best stories in all of baseball. The pinstriped rookie is belting home runs at a record pace and all eyes are on his every at-bat. The slugging phenom just doesn't hit homers, he absolutely crushes the ball. Follow along as the Daily News tracks each of Judge’s Ruthian blasts.
     </p>
+	<p class="byline"><em>Last updated <span id="datestamp"></span></em></p>
   <div class="ad center">
     <span>ADVERTISEMENT</span>
     <div id='div-gpt-ad-1423507761396-1'>
@@ -217,7 +218,6 @@
     <hr>
 
     <p class="byline">By Andy Clayton, Andy Lippitt, Will Lippitt, James Miller, Joe Murphy and Kelli R. Parker</p>
-	<p class="byline"><em>Last updated <span id="datestamp"></span></em></p>
 
     <div id="field">
         <img src="img/baseball-field-deluxe.png" alt="An illustration of a baseball field">
@@ -236,7 +236,11 @@
             <button onClick="slugger.restart(); return false;" id="restart" class="hide">Restart</button>
         </p>
         <div class="stats-text">
-            <p>Click a column to sort by that category.</p>
+            <p>
+				Click a column to sort by that category.
+				Click a home run number to replay that home run,
+				and click the date of the home run to read the Daily News' coverage of that game.
+			</p>
         </div>
         <table id="homers" class="tablesorter compare">
         <caption>Home Run Details</caption>
@@ -300,8 +304,6 @@
 function judge_homeruns_callback(data) { slugger.data = data; slugger.load_ani(); }
 
 var slugger = {
-    draw_field: function() {},
-    play_hit: function() {},
     update_statbox: function(id) {
         if ( this.data.length == +id ) return false;
         var item = this.data[id];
@@ -316,7 +318,6 @@ var slugger = {
     hits: [],
     table_row: function(item) {
         // Write a table row's data
-
         var date_item = '<a href="' + item['Game-Story-URL'] + '">' + item['Date'].replace('/17', '') + '</a>';
         if ( item['Game-Story-URL'] === '' ) date_item = item['Date'].replace('/17', '');
 
@@ -386,23 +387,6 @@ var slugger = {
         playpause = 'pause';
         this.interface_.end();
     },
-    clean_stage: function() {
-        // Remove all the balls and lines from the field.
-        for( var i = scene.children.length - 1; i >= 0; i--) 
-        {
-            obj = scene.children[i];
-            scene.remove(obj);
-        }
-    },
-    restart: function() {
-        hitIndex = 0;
-        slugger.update_statbox(hitIndex);
-        this.clean_stage();
-        ani.balls[hitIndex] = ani.make_ball();
-        ani.lines[hitIndex] = ani.make_line();
-        positions = ani.lines[hitIndex].geometry.attributes.position.array;
-        this.play();
-    },
     play_one: function(item) {
         // Play a single event
         hitIndex = item - 1;
@@ -413,7 +397,23 @@ var slugger = {
         positions = ani.lines[hitIndex].geometry.attributes.position.array;
         maxHits = item;
         this.play();
-        //slugger.update_statbox(hitIndex);
+    },
+    restart: function() {
+        hitIndex = 0;
+        slugger.update_statbox(hitIndex);
+        this.clean_stage();
+        ani.balls[hitIndex] = ani.make_ball();
+        ani.lines[hitIndex] = ani.make_line();
+        positions = ani.lines[hitIndex].geometry.attributes.position.array;
+        this.play();
+    },
+    clean_stage: function() {
+        // Remove all the balls and lines from the field.
+        for( var i = scene.children.length - 1; i >= 0; i--) 
+        {
+            obj = scene.children[i];
+            scene.remove(obj);
+        }
     },
     load_ani: function() {
         // Called once the data's loaded, this does most of the work.
