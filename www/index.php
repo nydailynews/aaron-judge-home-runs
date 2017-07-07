@@ -197,7 +197,7 @@
     <h1>All rise for Aaron Judge's blasts</h1>
     <div>
         <ul class="ra-share" id="ra-share-top" style="text-align: center;">
-            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://interactive.nydailynews.com/project/judge-homers"><li class="ra-share-f"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://interactive.nydailynews.com/project/judge-homers">facebook </li></a>
+            <li class="rt-share-f"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://interactive.nydailynews.com/project/judge-homers">facebook</a></li>
             <li class="ra-share-t"> <a target="_blank" href="https://twitter.com/intent/tweet?text=Aaron Judge is a home run machine %20http://interactive.nydailynews.com/project/judge-homers/">Tweet</a></li>
             <li class="ra-share-e"> <a href="mailto:?subject=Aaron Judge is a home run machine&amp;body=The pinstriped rookie is belting home runs at a record pace and all eyes are on his every at-bat. http://interactive.nydailynews.com/project/judge-homers/">email</a> </li>
         </ul>
