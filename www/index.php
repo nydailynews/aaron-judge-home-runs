@@ -439,7 +439,6 @@ var slugger = {
             var ratio = w / 1100;
             var new_w = ratio * 1024;
             var new_h = ratio * 602;
-            console.log(ratio, new_w, new_h);
             $('#field canvas').css('background-size', new_w + 'px ' + new_h + 'px');
         }
     }
