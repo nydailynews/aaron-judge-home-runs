@@ -269,7 +269,7 @@
     </div>
   </div>
 
-	<h2>Aaron Judge in the news</h2>
+	<h2>Aaron Judge in the News</h2>
 	<p>Recent Aaron Judge headlines from the New York Daily News.</p>
 	<ul>
 <?php
