@@ -202,9 +202,9 @@ table caption {
     margin-bottom: 1.5em;
   }
 
-  table tr td:first-child {
+/*  table tr td:first-child {
     display: none;
-  }
+  }*/
 
   tr:nth-child(even) {
     background-color: transparent; }
