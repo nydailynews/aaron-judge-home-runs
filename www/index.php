@@ -128,7 +128,7 @@
     </p>
 	<p class="byline"><em>Last updated <span id="datestamp"></span></em></p>
 
-  <div class="ad center">
+  <div class="ad big_ad center">
     <div id='div-gpt-ad-x105'>
 	  <script>
 		googletag.cmd.push(function() { googletag.display('div-gpt-ad-x105'); });
