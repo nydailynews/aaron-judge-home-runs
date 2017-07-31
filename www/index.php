@@ -182,6 +182,21 @@
 <!-- STATS TABLE END -->
 
   <div class="ad center">
+    <div id='div-gpt-ad-1423507761396-1'>
+	  <script>
+		googletag.cmd.push(function() { googletag.display('div-gpt-ad-1423507761396-1'); });
+	  </script>
+    </div>
+  </div>
+
+	<div style="max-width: 800px; margin: 5px auto;">
+	<h2>Aaron Judge video</h2>
+	<p>The latest Aaron Judge news and game clips.</p>
+	<div class='s2nPlayer k-EdgWhHO8' data-type='float'></div><script type='text/javascript' src='http://embed.sendtonews.com/player3/embedcode.js?fk=EdgWhHO8&cid=6215&offsetx=0&offsety=0&floatwidth=400&floatposition=bottom-right' data-type='s2nScript'></script>
+	</div>
+
+
+  <div class="ad center">
     <div id='div-gpt-ad-1423507761396-2'>
 	  <script>
 		googletag.cmd.push(function() { googletag.display('div-gpt-ad-1423507761396-2'); });
@@ -196,6 +211,14 @@
 echo file_get_contents('recent.html');
 ?>
 	</ul>
+
+  <div class="ad center">
+    <div id='div-gpt-ad-1423507761396-3'>
+	  <script>
+		googletag.cmd.push(function() { googletag.display('div-gpt-ad-1423507761396-3'); });
+	  </script>
+    </div>
+  </div>
 
 </article>
 
