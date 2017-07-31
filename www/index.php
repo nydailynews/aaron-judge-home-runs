@@ -94,74 +94,7 @@
     </script>
     
     <!-- ADS-START -->
-    <!-- ads -->
-    <script>
-    var googletag = googletag || {};
-    googletag.cmd = googletag.cmd || [];
-    (function() {
-        var gads = document.createElement('script');
-        gads.async = true;
-        var useSSL = 'https:' == document.location.protocol;
-        gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
-        var node = document.getElementsByTagName('script')[0];
-        node.parentNode.insertBefore(gads, node);
-    })();
-    var is_mobile = /Android|webOS|iPhone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    var project_ad_tag = 'project';
-    </script>
-    <script>
-      if( !is_mobile ) {
-          googletag.cmd.push(function() {
-          googletag.defineSlot('/4692832/NYDN/Interactive',  [[728, 90]], 'div-gpt-ad-x101').addService(googletag.pubads())
-          .setTargeting("interactive",ad_tag)
-          .setTargeting("position","x101");
-          });
-          googletag.cmd.push(function() {
-          googletag.defineSlot('/4692832/NYDN/Interactive',  [[300, 250]], 'div-gpt-ad-1423507761396-1').addService(googletag.pubads())
-          .setTargeting("interactive",ad_tag)
-          .setTargeting("position","x102");
-          });
-          googletag.cmd.push(function() {
-          googletag.defineSlot('/4692832/NYDN/Interactive',  [[300, 250]], 'div-gpt-ad-1423507761396-2').addService(googletag.pubads())
-          .setTargeting("interactive",ad_tag)
-          .setTargeting("position","x103");
-          });
-          googletag.cmd.push(function() {
-          googletag.defineSlot('/4692832/NYDN/Interactive',  [[300, 250]], 'div-gpt-ad-1423507761396-3').addService(googletag.pubads())
-          .setTargeting("interactive",ad_tag)
-          .setTargeting("position","x104");
-          googletag.pubads().enableSingleRequest();
-          googletag.enableServices();
-          });
-        }
-    </script>
-    <!-- mobile ad -->
-    <script>
-        if( is_mobile ) {        
-          googletag.cmd.push(function() {
-          googletag.defineSlot('/4692832/M.NYDN/Interactive', [[320, 50]], 'div-gpt-ad-x101').addService(googletag.pubads())
-          .setTargeting("interactive",ad_tag)
-          .setTargeting("position","x101");
-          });
-          googletag.cmd.push(function() {
-          googletag.defineSlot('/4692832/M.NYDN/Interactive', [[300, 250]], 'div-gpt-ad-1423507761396-1').addService(googletag.pubads())
-          .setTargeting("interactive",ad_tag)
-          .setTargeting("position","x102");
-          });
-          googletag.cmd.push(function() {
-          googletag.defineSlot('/4692832/M.NYDN/Interactive', [[300, 250]], 'div-gpt-ad-1423507761396-2').addService(googletag.pubads())
-          .setTargeting("interactive",ad_tag)
-          .setTargeting("position","x103");          
-          });
-          googletag.cmd.push(function() {
-          googletag.defineSlot('/4692832/M.NYDN/Interactive', [[300, 250]], 'div-gpt-ad-1423507761396-3').addService(googletag.pubads())
-          .setTargeting("interactive",ad_tag)
-          .setTargeting("position","x104");
-          googletag.pubads().enableSingleRequest();
-          googletag.enableServices();
-          });
-        }
-    </script>
+	<script onload="nydn_ads('aaron-judge');" src="http://interactive.nydailynews.com/includes/ads/ads.js"></script>
     <!-- ADS-END -->
 
     <script>var nav_params = {section: 'projects', url: 'http://interactive.nydailynews.com/project'};</script>
@@ -194,12 +127,12 @@
         <strong>Aaron Judge hits the ball deep.</strong> Aaron Judge hits the ball far. The hulking 6-7 Baby Bomber has become the face of the Yankees youth movement and one of the best stories in all of baseball. The pinstriped rookie is belting home runs at a record pace and all eyes are on his every at-bat. The slugging phenom just doesn't hit homers, he absolutely crushes the ball. Follow along as the Daily News tracks each of Judge’s Ruthian blasts.
     </p>
 	<p class="byline"><em>Last updated <span id="datestamp"></span></em></p>
+
   <div class="ad center">
-    <span>ADVERTISEMENT</span>
-    <div id='div-gpt-ad-1423507761396-1'>
-              <script>
-                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1423507761396-1'); });
-              </script>
+    <div id='div-gpt-ad-x105'>
+	  <script>
+		googletag.cmd.push(function() { googletag.display('div-gpt-ad-x105'); });
+	  </script>
     </div>
   </div>
 
@@ -249,11 +182,10 @@
 <!-- STATS TABLE END -->
 
   <div class="ad center">
-    <span>ADVERTISEMENT</span>
     <div id='div-gpt-ad-1423507761396-2'>
-              <script>
-                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1423507761396-2'); });
-              </script>
+	  <script>
+		googletag.cmd.push(function() { googletag.display('div-gpt-ad-1423507761396-2'); });
+	  </script>
     </div>
   </div>
 
